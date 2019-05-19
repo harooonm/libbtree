@@ -8,7 +8,7 @@ clean:
 INCDIR=include/
 SRCDIR=src/
 SRCS=$(wildcard $(SRCDIR)*.c)
-
+CC=gcc
 CFLAGS=-Wall -Wextra -Wfatal-errors -D_POSIX_C_SOURCE=200809L\
 	-std=c11
 
@@ -22,5 +22,5 @@ release:	objs
 
 
 objs:
-	gcc -c -fPIC $(CFLAGS) $(IFLAGS) $(SRCS)
-	gcc $(CFLAGS) -shared -o libbtree.so btree.o
+	$(CC) -c -fPIC $(CFLAGS) $(IFLAGS) $(SRCS)
+	$(CC) $(CFLAGS) -shared -o libbtree.so btree.o
