@@ -9,11 +9,11 @@ static btree_t **_find_tree_node(btree_t **root, void *data, comparator comp)
 		switch(cmp_res){
 		case 0:
 			return cur;
-		case 1:
-			cur = &((*cur)->right);
-			break;
-		case -1:
-			cur = &((*cur)->left);
+		default:
+			if (cmp_res > 0)
+				cur = &((*cur)->right);
+			else
+				cur = &((*cur)->left);
 			break;
 		}
 	}
