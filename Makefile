@@ -1,5 +1,5 @@
 help:
-	@echo "targets debug release"
+	@echo "targets debug small fast"
 
 clean:
 	rm -f btree.o
@@ -15,11 +15,12 @@ CFLAGS=-Wall -Wextra -Wfatal-errors -D_POSIX_C_SOURCE=200809L\
 IFLAGS=-I$(INCDIR)
 
 debug:	CFLAGS += -g -Og
-release:	CFLAGS += -flto -Os -s
+small:	CFLAGS += -flto -Os -s
+fast:	CFLAGS += -O2
 
 debug:	objs
-release:	objs
-
+small:	objs
+fast:	objs
 
 objs:
 	$(CC) -c -fPIC $(CFLAGS) $(IFLAGS) $(SRCS)
