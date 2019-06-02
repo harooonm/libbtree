@@ -6,16 +6,12 @@ static btree_t **_find_tree_node(btree_t **root, void *data, comparator comp)
 	btree_t **cur = root;
 	while(*cur){
 		int cmp_res = comp((*cur)->data, data);
-		switch(cmp_res){
-		case 0:
+		if (cmp_res > 0)
+			cur = &((*cur)->right);
+		else if (cmp_res < 0)
+			cur = &((*cur)->left);
+		else
 			return cur;
-		default:
-			if (cmp_res > 0)
-				cur = &((*cur)->right);
-			else
-				cur = &((*cur)->left);
-			break;
-		}
 	}
 	return cur;
 }
