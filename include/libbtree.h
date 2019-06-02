@@ -12,7 +12,7 @@ typedef int (*comparator)(void *old, void *new);
 typedef void (*free_data)(void *data);
 
 extern btree_t *add_get_tree_node(btree_t **root, void *data,
-	comparator comp);
+	comparator comp, int *added);
 extern void add_tree_node(btree_t **root, void *data, comparator comp);
 extern void del_tree_node(btree_t **root, void *data, comparator comp, free_data free_data_func);
 extern void itr_tree(btree_t *root, for_each foreach);
