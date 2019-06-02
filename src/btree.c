@@ -16,13 +16,21 @@ static btree_t **_find_tree_node(btree_t **root, void *data, comparator comp)
 	return cur;
 }
 
-void add_tree_node(btree_t **root, void *data, comparator comp)
+btree_t *add_get_tree_node(btree_t **root, void *data,
+	comparator comp)
 {
 	btree_t **next = _find_tree_node(root, data, comp);
-	if (*next)
-		return;
-	(*next) = calloc(1, sizeof(btree_t));
-	(*next)->data = data;
+	if (!*next) {
+		(*next) = calloc(1, sizeof(btree_t));
+		(*next)->data = data;
+	}
+	return *next;
+}
+
+void add_tree_node(btree_t **root, void *data, comparator comp)
+{
+	btree_t __attribute__((unused)) *node = add_get_tree_node(root,
+		data, comp);
 }
 
 
